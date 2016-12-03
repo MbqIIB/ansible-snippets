@@ -1,0 +1,2 @@
+- name: Install telnet on RedHat/CentOS
+  yum: pkg=telnet state=latest
