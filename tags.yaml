@@ -1,0 +1,17 @@
+--- # To just install lynx you can try:
+    # ansible-playbook --tags "install_lynx" tags.yaml
+    # or ansible-playbook --skip-tags "install_telnet" tags.yaml
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Install telnet
+      yum: pkg=telnet state=latest
+      tags:
+        - install_telnet
+    - name: Install lynx
+      yum: pkg=lynx state=latest
+      tags:
+        - install_lynx
