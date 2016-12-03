@@ -1,0 +1,15 @@
+- hosts: centos
+  sudo: yes
+  connection: ssh
+  user: ansible
+  gather_facts: no
+  tasks:
+    - name: Install Apache
+      yum: pkg=httpd state=latest
+    - name: Verify that Apache is running
+      shell: systemctl status httpd
+      register: apache_status
+      until: apache_status.stdout.find("active (running)") != -1
+      retries: 5
+      delay: 5
+    - debug: var=apache_status
