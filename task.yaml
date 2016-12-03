@@ -1,0 +1,13 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars_prompt:
+    - name: username
+      prompt: Local username
+  tasks:
+    - name: Install Lynx Web Browser
+      action: yum name=lynx state=installed
+    - name: Check for Telnet Client
+      action: yum name=telnet state=absent

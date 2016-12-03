@@ -1,0 +1,20 @@
+- hosts: all
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    playbook_version: 0.1b
+  tasks:
+    - name: Simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
+      command: /bin/sleep 15
+      async: 45
+      poll: 5
+    - name: Install Apache Web Server
+      action: yum name=httpd state=installed
+      notify: Restart httpd
+    - name: Verify the Lynx Web Browser
+      action: yum name=lynx state=absent
+  handlers:
+    - name: Restart httpd
+      action: service name=httpd state=restarted
