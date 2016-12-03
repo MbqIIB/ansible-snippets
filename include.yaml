@@ -1,0 +1,11 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - include: plays/install_lynx.yaml
+    - name: Check if telnet is installed
+      command: rpm -q telnet
+      register: telnet_presence
+    - debug: var=telnet_presence
