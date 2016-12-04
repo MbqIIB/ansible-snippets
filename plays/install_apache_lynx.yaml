@@ -1,0 +1,5 @@
+- name: Install lynx
+  yum: pkg=lynx state=latest
+- name: Install httpd
+  yum: pkg=httpd state=latest
+  notify: Restart httpd
