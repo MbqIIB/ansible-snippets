@@ -1,0 +1,10 @@
+--- # Run using:
+    # ansible-playbook --extra-vars "hosts=centos user=ansible pkg=telnet" vars_commandline.yaml
+- hosts: '{{ hosts }}'
+  user: '{{ user }}'
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Install the specified package
+      yum: pkg='{{ pkg }}' state=latest
