@@ -1,0 +1,14 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Ensure that all packages are up-to-date
+      yum: pkg=* state=latest update_cache=true
+    - name: Ensure that apache is in the latest version
+      yum: pkg=httpd state=latest
+    - name: Ensure that telnet is installed
+      yum: pkg=telnet state=installed
+    - name: Ensure that lynx is not installed
+      yum: pkg=lynx state=absent
