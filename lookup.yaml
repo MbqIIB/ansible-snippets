@@ -4,4 +4,4 @@
   connection: ssh
   gather_facts: no
   tasks:
-    - debug: msg="The number and atomic mass of Lithium is {{ lookup('csvfile', 'Li file=sample.csv delimiter=, col=2,3') }}"
+    - debug: msg="The number and atomic mass of Lithium is {{ lookup('csvfile', 'Li file=conf/sample.csv delimiter=, col=2,3') }}"

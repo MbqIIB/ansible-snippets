@@ -3,7 +3,7 @@
     control_server: 172.31.102.77
     web_root: /var/www/html
   vars_files:
-    - vars_in.yaml
+    - conf/weird_var.yaml
   tasks:
     - name: Install Lynx on all slaves
       yum: pkg=lynx state=installed update_cache=true

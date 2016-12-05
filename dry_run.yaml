@@ -6,7 +6,6 @@
   vars:
     playbook_version: 0.1b
   vars_files:
-    - conf/copyright.yaml
     - conf/webdefaults.yaml
   tasks:
     - name: Install Apache Web Server
