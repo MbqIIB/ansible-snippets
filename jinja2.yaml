@@ -1,0 +1,12 @@
+- hosts: centos:ubuntu
+  connection: ssh
+  user: ansible
+  sudo: yes
+  gather_facts: yes
+  vars:
+    user_name: test
+    user_password: password123
+    connection_type: SFTP
+  tasks:
+    - name: Install the configuration file customized for the system
+      template: src=conf/test.conf.j2 dest=/home/ansible/test.conf owner=ansible group=ansible mode=750
