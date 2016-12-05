@@ -1,0 +1,8 @@
+- hosts: server2
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Copy this playbook to another server
+      action: copy src=copy.yaml dest=/tmp/playbook.yaml owner=root group=root mode=0777 backup=yes
