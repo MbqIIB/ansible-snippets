@@ -1,0 +1,12 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Ensure that apache is in the latest version
+      yum: pkg=httpd state=latest update_cache=true
+    - name: Ensure that apache is started
+      service: name=httpd state=started
+    - name: Ensure that apache is enabled
+      service: name=httpd enabled=yes
