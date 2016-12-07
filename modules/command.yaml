@@ -1,0 +1,18 @@
+--- # IMPORTANT NOTE
+    # Contrary to shell module, command module does not support
+    # output redirection using > >> | etc,
+    # it does not also read environmental variables.
+    # See more:
+    # https://blog.confirm.ch/ansible-modules-shell-vs-command/
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Create test file in tmp using touch
+      command: touch /tmp/test.txt
+    - name: Copy test file as test1
+      command: cp test.txt test1.txt
+      args:
+        chdir: /tmp
