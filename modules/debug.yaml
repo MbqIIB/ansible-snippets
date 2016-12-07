@@ -1,0 +1,13 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Install apache
+      yum: name=httpd state=latest update_cache=true
+    - debug: msg="Apache installed"
+    - name: How long has the system been up?
+      shell: uptime
+      register: uptime
+    - debug: var=uptime
