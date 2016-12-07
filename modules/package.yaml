@@ -1,0 +1,8 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Install telnet
+      package: name=telnet state=latest
