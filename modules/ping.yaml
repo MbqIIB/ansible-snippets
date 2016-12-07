@@ -1,0 +1,9 @@
+--- # You can always use it to check if hosts are up before issuing any other command.
+    # Come on! Excecuting it in a playbook is not useless.
+- hosts: all
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Ping hosts
+      ping:
