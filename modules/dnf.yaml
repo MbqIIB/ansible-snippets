@@ -1,0 +1,15 @@
+--- # Epel repo has to be disabled while using dnf,
+    # as it's not compatible with libsolv (dnf dependency).
+    # If this issue has been fix, please create a pull request.
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Enable epel repo
+      yum: name=epel-release state=latest update_cache=true
+    - name: Ensure that dnf is in the latest version
+      yum: name=dnf state=latest update_cache=true
+    - name: Install lynx using dnf
+      dnf: name=lynx disablerepo=epel state=latest
