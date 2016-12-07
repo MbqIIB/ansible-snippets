@@ -1,0 +1,11 @@
+--- # Raw module allows to redirect the output (>> > | etc)
+    # but it does not allow to register the output
+    # and use it in debug statements.
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Log system uptime to /tmp/uptime.log
+      raw: uptime > /tmp/uptime.log executable=/bin/sh
