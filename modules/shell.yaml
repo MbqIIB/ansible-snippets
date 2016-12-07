@@ -1,0 +1,10 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Create remote uptime log
+      shell: uptime >> uptime.log
+      args:
+        creates: uptime.log
