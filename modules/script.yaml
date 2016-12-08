@@ -1,0 +1,8 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Copy and execute log_uptime.sh
+      script: conf/log_uptime.sh
