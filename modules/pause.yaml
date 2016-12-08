@@ -1,0 +1,15 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Pause for 5 seconds before installing httpd
+      pause:
+        seconds: 5
+    - name: Install httpd
+      yum: name=httpd state=latest update_cache=true
+    - pause:
+        prompt: Now, please start the service manually and press enter
+    - name: Install lynx
+      yum: pkg=lynx state=latest
