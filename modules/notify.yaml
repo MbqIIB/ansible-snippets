@@ -1,0 +1,16 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Install httpd
+      yum: name=httpd state=latest update_cache=true
+      # Watch out! It will only be fired when the state is changed.
+      # It means that if you had started the service earlier,
+      # the notification would not work and the service
+      # would not be started.
+      notify: Restart httpd
+  handlers:
+    - name: Restart httpd
+      service: name=httpd state=started
