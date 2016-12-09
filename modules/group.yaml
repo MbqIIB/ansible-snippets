@@ -1,0 +1,11 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Add an example group
+      group:
+        name: testers123
+        state: present
+        gid: 2888
