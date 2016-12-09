@@ -1,0 +1,12 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Manually check if the OS is RedHat-based
+      stat:
+        path: /etc/redhat-release
+      register: check
+    - debug: msg="RedHat-based!"
+      when: check.stat.exists is defined and check.stat.exists == True
