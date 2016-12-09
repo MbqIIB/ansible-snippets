@@ -1,0 +1,33 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Ensure that the required 'at' package is installed
+      package: name=at state=latest
+    - name: Remove the log file if it exists
+      file:
+        path: /tmp/at.log
+        state: absent
+    - name: Create a dir log in 1 minute
+      at:
+        command: ls -al /var/log > /tmp/at.log
+        count: 1
+        units: minutes
+        unique: yes
+    - name: Manually check if the log was created
+      stat:
+        path: /tmp/at.log
+      register: check
+    - debug: msg="'at.log' created!"
+      when: check.stat.exists is defined and check.stat.exists == True
+    - name: Pause for 1 minute...
+      pause:
+        minutes: 1
+    - name: Manually check if the log was created
+      stat:
+        path: /tmp/at.log
+      register: check
+    - debug: msg="'at.log' created!"
+      when: check.stat.exists is defined and check.stat.exists == True
