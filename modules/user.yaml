@@ -1,0 +1,27 @@
+--- # IMPORTANT NOTE
+    # Ansible DOES NOT allow to directly set up pure text-based passwords.
+    # You have to generate a password hash.
+    # See this:
+    # http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Add an example user
+      user:
+        name: james
+        shell: /bin/bash
+        groups: wheel
+        append: yes
+        # DO NOT USE IT IN NON-TESTING ENVIRONMENTS
+        # This is an INSECURE solution just used here to simplify the playbook.
+        # To understand this important issue,
+        # see the link provided at the beginning of this file.
+        # password used - 123456
+        password: "{{ '123456' | password_hash('sha512') }}"
+    - name: Add a non-login user
+      user:
+        name: master
+        shell: /bin/false
