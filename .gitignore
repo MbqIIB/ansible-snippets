@@ -1,0 +1,2 @@
+# Ignore dir and files created as a part of the fetch module example
+modules/conf/fstab_backup
