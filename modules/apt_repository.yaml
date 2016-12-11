@@ -1,0 +1,27 @@
+--- # IMPORTANT NOTE
+    # This playbook will FAIL as 'apt_repository' module is strictly
+    # related to 'apt_key' module.
+    # Generally, whenever you add a repository, you HAVE TO add the repository key.
+    # Try executing this playbook and see what happens. Afterwards, try running
+    # 'apt_key' module playbook to see the difference.
+- hosts: ubuntu
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Update package cache
+      apt: update_cache=yes
+    - name: Ensure that 'python-apt' is installed
+      apt: name=python-apt state=latest
+    - name: Ensure that packages required to add https repos are installed
+      apt: name={{ item }} state=latest
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+    - name: Add docker repo
+      apt_repository:
+        repo: deb https://apt.dockerproject.org/repo ubuntu-trusty main
+        state: present
+    - name: Install docker
+      apt: name=docker-engine state=latest
