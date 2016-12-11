@@ -1,0 +1,28 @@
+- hosts: ubuntu
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Update package cache
+      apt: update_cache=yes
+    - name: Ensure that 'python-apt' is installed
+      apt: name=python-apt state=latest
+    - name: Ensure that packages required to add https repos are installed
+      apt: name={{ item }} state=latest
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+    - name: Add docker repo key
+      apt_key:
+        id: 58118E89F3A912897C070ADBF76221572C52609D
+        keyserver: hkp://ha.pool.sks-keyservers.net:80
+        state: present
+    - name: Add docker repo
+      apt_repository:
+        repo: deb https://apt.dockerproject.org/repo ubuntu-trusty main
+        state: present
+    - name: Update package cache
+      apt: update_cache=yes
+    - name: Install docker
+      apt: name=docker-engine state=latest
