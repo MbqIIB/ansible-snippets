@@ -1,0 +1,9 @@
+- hosts: centos
+  user: ansible
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Add an example cron job
+      cron:
+        name: Log current uptime every minute
+        job: uptime > /home/{{ansible_user_id}}/uptime.log
