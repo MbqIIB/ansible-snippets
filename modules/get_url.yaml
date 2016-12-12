@@ -1,0 +1,16 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Update package cache (debian-based)
+      apt: update_cache=yes
+      when: ansible_os_family == 'Debian'
+    - name: Ensure that the package required to handle https is installed
+      package: name=ca-certificates state=latest
+    - name: Download ansible CHANGELOG
+      get_url:
+        url: https://github.com/ansible/ansible/blob/devel/CHANGELOG.md
+        mode: 0777
+        dest: /tmp
