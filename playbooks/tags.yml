@@ -1,6 +1,6 @@
 --- # To just install lynx you can try:
-    # ansible-playbook --tags "install_lynx" tags.yaml
-    # or ansible-playbook --skip-tags "install_telnet" tags.yaml
+    # ansible-playbook --tags "install_lynx" tags.yml
+    # or ansible-playbook --skip-tags "install_telnet" tags.yml
 - hosts: centos
   user: ansible
   sudo: yes

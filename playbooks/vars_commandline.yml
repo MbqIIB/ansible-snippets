@@ -1,5 +1,5 @@
 --- # Run using:
-    # ansible-playbook --extra-vars "hosts=centos user=ansible pkg=telnet" vars_commandline.yaml
+    # ansible-playbook --extra-vars "hosts=centos user=ansible pkg=telnet" vars_commandline.yml
 - hosts: '{{ hosts }}'
   user: '{{ user }}'
   sudo: yes

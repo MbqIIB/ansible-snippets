@@ -1,0 +1,10 @@
+--- # Run using ansible-playbook --ask-vault-pass vault.yml
+    # Or ansible-playbook --vault-password-file conf/password.txt vault.yml
+- hosts: 127.0.0.1
+  connection: local
+  gather_facts: no
+  vars_files:
+    - conf/encrypted_msg.yml
+  tasks:
+  - debug:
+      msg: "A secret message to all my enemies: {{ encrypted_msg }}"

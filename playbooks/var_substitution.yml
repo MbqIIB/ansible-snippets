@@ -6,7 +6,7 @@
   vars:
     playbook_version: 0.1b
   vars_files:
-    - conf/webdefaults.yaml
+    - conf/webdefaults.yml
   vars_prompt:
     - name: pkg_name
       prompt: Which package to install?

@@ -1,4 +1,4 @@
---- # Run using ansible-playbook start_at.yaml --start-at-task="Install lynx"
+--- # Run using ansible-playbook step.yml --step
 - hosts: centos
   user: ansible
   sudo: yes

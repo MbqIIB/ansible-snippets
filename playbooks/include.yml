@@ -4,7 +4,7 @@
   connection: ssh
   gather_facts: no
   tasks:
-    - include: plays/install_lynx.yaml
+    - include: plays/install_lynx.yml
     - name: Check if telnet is installed
       command: rpm -q telnet
       register: telnet_presence

@@ -6,7 +6,7 @@
   vars:
     playbook_version: 0.1b
   vars_files:
-    - conf/webdefaults.yaml
+    - conf/webdefaults.yml
   tasks:
     - name: Install Apache Web Server
       action: yum name=httpd state=installed

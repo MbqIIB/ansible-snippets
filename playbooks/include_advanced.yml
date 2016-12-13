@@ -1,0 +1,12 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars_files:
+    - conf/version.yml
+  tasks:
+    - include: plays/install_apache_lynx.yml
+    - include: plays/check_lynx.yml
+  handlers:
+    - include: plays/restart_httpd.yml
