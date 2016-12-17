@@ -1,0 +1,23 @@
+- hosts: ubuntu
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Ensure that package cache is up-to-date
+      apt: update_cache=yes cache_valid_time=7200
+    - name: Ensure that apache2 is installed
+      apt: name=apache2 state=latest
+    - name: Ensure that apache2 is started and enabled
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    - name: Disable apache2 'alias' module
+      apache2_module:
+        name: alias
+        state: absent
+    - name: Restart apache2
+      service:
+        name: apache2
+        state: restarted
