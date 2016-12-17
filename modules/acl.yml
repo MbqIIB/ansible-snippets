@@ -1,0 +1,22 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Ensure that 'acl' package is installed
+      yum:
+        name: acl
+        state: latest
+    - name: Ensure that 'test' file is present in /tmp
+      file:
+        name: /tmp/test
+        state: touch
+      changed_when: False
+    - name: Use acl to allow 'ansible' user to view and edit this file
+      acl:
+        name: /tmp/test
+        entity: ansible
+        etype: user
+        permissions: rw
+        state: present
