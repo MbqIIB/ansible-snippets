@@ -1,0 +1,16 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: Find recently edited files in /etc
+      find:
+        path: /etc
+        age: -1h
+        file_type: file
+        recurse: yes
+      register: recent_etc
+    - name: Display the number of recently edited files in /etc
+      debug:
+        msg: "On host {{ ansible_hostname }}: {{ recent_etc.matched }}"
