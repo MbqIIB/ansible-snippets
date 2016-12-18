@@ -1,0 +1,12 @@
+- hosts: centos
+  user: ansible
+  connection: ssh
+  sudo: yes
+  gather_facts: no
+  tasks:
+    - name: Ensure that 'libselinux-python' is installed
+      yum: name=libselinux-python state=latest
+    - name: Change selinux mode to 'permissive' and policy to 'targeted'
+      selinux:
+        state: permissive
+        policy: targeted
