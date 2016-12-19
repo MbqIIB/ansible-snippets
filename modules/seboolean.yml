@@ -1,0 +1,11 @@
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Let httpd use per-user web directories
+      seboolean:
+        name: httpd_enable_homedirs
+        state: yes
+        persistent: no
