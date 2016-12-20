@@ -1,0 +1,19 @@
+--- # set_facts are similar to variables.
+    # It's not possible to override a set_fact using a variable.
+    # However, a set_fact can be overridden using another set fact.
+    # To see this, try uncommenting the lines in 'redhat_install_apache.yml'
+    # Also, please DO NOT confuse set facts with facts provided by setup module.
+    # set_facts are NOT persistent between playbooks.
+- hosts: centos
+  user: ansible
+  sudo: yes
+  gather_facts: no
+  vars:
+    - apache_pkg: apache2
+  tasks:
+    - name: Define 'apache_pkg' fact
+      set_fact:
+        apache_pkg: httpd
+    - name: Try to override 'apache_pkg' fact using a var file
+      include_vars: conf/debian_apache_pkg.yml
+    - include: plays/redhat_install_apache.yml

@@ -1,0 +1,7 @@
+# - name: Try to redefine 'apache_pkg' fact
+#   set_fact:
+#     apache_pkg: httpdsfdfddf
+- name: Install apache (redhat)
+  yum:
+    name: "{{ apache_pkg }}"
+    state: latest
