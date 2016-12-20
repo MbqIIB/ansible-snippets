@@ -1,2 +1,5 @@
 # Ignore dir and files created as a part of the fetch module example
 modules/conf/fstab_backup
+
+# Ignore 3rd-party galaxy role used to install mysql
+modules/geerlingguy.mysql
