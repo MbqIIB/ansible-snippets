@@ -1,0 +1,32 @@
+--- # IMPORTANT NOTE
+    # This playbook automates partition formatting on remote servers.
+    # It should work out-of-the-box on linuxacademy lab servers.
+    # Just use the 'Mount Device' button. That's it.
+    # If you do not have the linuxacademy subscription,
+    # or you do not want to use those lab servers - you can try to plug in
+    # a usb stick, change the dev name and use a local_action.
+    # PLEASE BE CAREFUL. This playbook wipes out the partition table
+    # and creates a new partition before formatting it.
+    # Also, please bear in mind that the device has to be UMOUNTED
+    # before running this playbook.
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+    dev: /dev/xvdf
+    partition: "{{dev}}1"
+  tasks:
+    - name: Update package cache (debian)
+      apt: update_cache=yes cache_valid_time=7200
+      when: ansible_os_family == 'Debian'
+    - name: Install parted
+      package: name=parted state=latest
+    - name: Create MBR partition table and one partition on the device
+      shell:  sudo parted -s {{ dev }} mklabel msdos mkpart primary 'ext2' '0%' '100%'
+    - name: Format the partition
+      filesystem:
+        fstype: ext2
+        dev: "{{partition}}"
+        force: yes
