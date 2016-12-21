@@ -1,0 +1,24 @@
+--- # IMPORTANT NOTE
+    # This playbook requires geerlingguy.mysql role installed from galaxy.
+    # To install, just run:
+    # ansible-galaxy --roles-path=. install geerlingguy.mysql
+    # inside the dir containing this playbook.
+    # It ensures that mysql is installed before running any related tasks.
+- hosts: centos
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+    db_new_user: bob
+  roles:
+    - geerlingguy.mysql
+  tasks:
+    - name: Ensure that 'MySQL-python' is installed
+      yum: name=MySQL-python state=latest
+    - name: Create a new mysql user
+      mysql_user:
+        name: "{{ db_new_user }}"
+        password: 123456
+        priv: '*.*:ALL'
+        state: present
