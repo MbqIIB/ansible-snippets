@@ -1,0 +1,25 @@
+--- # IMPORTANT NOTE
+    # This playbook automates partition mounting on remote servers.
+    # It should work fine on linuxacademy lab servers.
+    # A formatted partition is required.
+    # For more details, see the 'filesystem' module playbook.
+    # Please bear in mind that the 'mounted' state adds a fstab entry.
+    # Thus, please ensure that before the node is shut down,
+    # you either remove this entry manually or run this playbook with
+    # state 'absent'.
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    partition: /dev/xvdf1
+    filesystem: ext2
+  tasks:
+    - name: Mount the partition
+      mount:
+        name: "/mnt{{partition}}"
+        src: "{{ partition }}"
+        fstype: "{{ filesystem }}"
+        opts: rw
+        state: mounted
