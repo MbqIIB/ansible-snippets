@@ -3,3 +3,6 @@ modules/conf/fstab_backup
 
 # Ignore 3rd-party galaxy role used to install mysql
 modules/geerlingguy.mysql
+
+# Ignore retry files which are created when a playbook fails
+*.retry
