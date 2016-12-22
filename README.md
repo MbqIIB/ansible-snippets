@@ -1,5 +1,5 @@
-This repo includes the ansible snippets I created during my in-depth ansible learning using the official ansible documentation and 23h course made by Linux Academy [(check them out!)](https://linuxacademy.com).
+Licensed under [The MIT License](LICENSE).
 
-Licensed under [The Unlicense](LICENSE).
+Created by [Tomasz Hamerla](https://www.linkedin.com/in/nonyy).
 
-**TL;DR**: You are free to do whatever you want. The snippets are not copyrighted.
+Based on ansible snippets provided by [Linux Academy](http://linuxacademy.com/) as a part of their 23h ansible course.
