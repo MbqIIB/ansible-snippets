@@ -1,0 +1,13 @@
+- hosts: slaves
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  pre_tasks:
+    - name: Log playbook start uptime
+      raw: uptime > simple_start.log
+  roles:
+    - simple_apache
+  post_tasks:
+    - name: Log playbook end uptime
+      raw: uptime > simple_end.log
