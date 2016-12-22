@@ -1,0 +1,27 @@
+- name: Update package cache (debian)
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ debian_cache_valid_time }}"
+  when: ansible_os_family == 'Debian'
+- name: Install apache (debian)
+  apt:
+    name: "{{ debian_apache }}"
+    state: latest
+  when: ansible_os_family == 'Debian'
+- name: Install apache (redhat)
+  yum:
+    name: "{{ redhat_apache }}"
+    state: latest
+  when: ansible_os_family == 'RedHat'
+- name: Ensure that apache is started and enabled (debian)
+  service:
+    name: "{{ debian_apache }}"
+    state: started
+    enabled: yes
+  when: ansible_os_family == 'Debian'
+- name: Ensure that apache is started and enabled (redhat)
+  service:
+    name: "{{ redhat_apache }}"
+    state: started
+    enabled: yes
+  when: ansible_os_family == 'RedHat'
