@@ -1,0 +1,16 @@
+- name: Include distro-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+- name: Update package cache (debian)
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ cache_valid_time }}"
+  when: ansible_os_family == 'Debian'
+- name: Install apache
+  package:
+    name: "{{ apache }}"
+    state: latest
+- name: Ensure that apache is started and enabled
+  service:
+    name: "{{ apache }}"
+    state: started
+    enabled: yes
