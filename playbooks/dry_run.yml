@@ -1,4 +1,4 @@
-- hosts: apache
+- hosts: centos
   user: test
   sudo: yes
   connection: ssh

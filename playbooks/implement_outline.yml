@@ -1,5 +1,5 @@
 --- # Outline to playbook
-- hosts: apache
+- hosts: centos
   user: test
   sudo: yes
   gather_facts: no
