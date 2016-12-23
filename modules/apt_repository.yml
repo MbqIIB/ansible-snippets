@@ -5,7 +5,7 @@
     # Try executing this playbook and see what happens. Afterwards, try running
     # 'apt_key' module playbook to see the difference.
 - hosts: ubuntu
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no

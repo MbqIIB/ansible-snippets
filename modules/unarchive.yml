@@ -1,7 +1,7 @@
 --- # Sample archive includes one dir called sample
     # with 9 files - sample{1,2,3,4,5,6,7,8,9}.txt
 - hosts: slaves
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no

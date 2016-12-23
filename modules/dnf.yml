@@ -2,7 +2,7 @@
     # as it's not compatible with libsolv (dnf dependency).
     # If this issue has been fix, please create a pull request.
 - hosts: centos
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no

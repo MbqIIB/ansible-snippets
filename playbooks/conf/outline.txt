@@ -1,5 +1,5 @@
 - slaves
-- ansible user
+- 'test' user
 - sudo rights
 
 - date/time stamp for when the playbook starts

@@ -1,2 +1,2 @@
-- name: Check if lynx is installed and log it to /home/ansible/lynx.log
-  raw: rpm -q lynx > /home/ansible/lynx.log
+- name: Check if lynx is installed and log it to /home/test/lynx.log
+  raw: rpm -q lynx > /home/test/lynx.log

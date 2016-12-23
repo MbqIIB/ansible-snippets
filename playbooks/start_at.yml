@@ -1,6 +1,6 @@
 --- # Run using ansible-playbook start_at.yml --start-at-task="Install lynx"
 - hosts: centos
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no
@@ -10,6 +10,6 @@
     - name: Install lynx
       yum: pkg=lynx state=latest
     - name: List home
-      command: ls -al /home/ansible
+      command: ls -al /home/test
       register: home_list
     - debug: var=result

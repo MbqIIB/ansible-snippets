@@ -1,6 +1,6 @@
 --- # Outline to playbook
 - hosts: apache
-  user: ansible
+  user: test
   sudo: yes
   gather_facts: no
   tasks:

@@ -5,7 +5,7 @@
     # inside the dir containing this playbook.
     # It ensures that mysql is installed before running any related tasks.
 - hosts: centos
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: yes

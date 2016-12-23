@@ -1,7 +1,7 @@
 - hosts: centos
   sudo: yes
   connection: ssh
-  user: ansible
+  user: test
   gather_facts: no
   tasks:
     - name: Install Apache

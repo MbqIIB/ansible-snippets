@@ -4,7 +4,7 @@
     # See this:
     # http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 - hosts: centos
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no

@@ -1,11 +1,11 @@
 - hosts: server3
   sudo: yes
-  user: ansible
+  user: test
   connection: ssh
   gather_facts: no
   tasks:
     - name: Ping the second server four times from main server
-      raw: ping -c 4 server2 > /home/ansible/ping.log
+      raw: ping -c 4 server2 > /home/test/ping.log
       delegate_to: 127.0.0.1
     - name: Install lynx
       yum: pkg=lynx state=latest

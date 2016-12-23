@@ -1,5 +1,5 @@
 - hosts: slaves
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: yes

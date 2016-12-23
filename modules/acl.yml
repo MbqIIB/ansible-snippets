@@ -1,5 +1,5 @@
 - hosts: centos
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no
@@ -13,10 +13,10 @@
         name: /tmp/test
         state: touch
       changed_when: False
-    - name: Use acl to allow 'ansible' user to view and edit this file
+    - name: Use acl to allow 'test' user to view and edit this file
       acl:
         name: /tmp/test
-        entity: ansible
+        entity: test
         etype: user
         permissions: rw
         state: present

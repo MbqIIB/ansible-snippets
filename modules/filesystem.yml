@@ -10,7 +10,7 @@
     # Also, please bear in mind that the device has to be UMOUNTED
     # before running this playbook.
 - hosts: slaves
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: yes

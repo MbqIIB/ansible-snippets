@@ -5,7 +5,7 @@
     # but please bear in mind that you do so AT YOUR OWN RISK.
     # Thus, do NOT open an issue to solve a problem that YOU just created.
 - hosts: slaves
-  user: ansible
+  user: test
   sudo: yes
   connection: ssh
   gather_facts: no
